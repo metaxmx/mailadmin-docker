@@ -12,7 +12,7 @@ RUN echo "courier-base courier-base/webadmin-configmode boolean true" | debconf-
 # install the tools and PHP extensions we need
 RUN apt-get update \
   && apt-get upgrade -y \
-  && apt-get install -y libcurl4-gnutls-dev libpng-dev libssl-dev libc-client2007e-dev libkrb5-dev unzip cron re2c python tree wget sudo \
+  && apt-get install -y libcurl4-gnutls-dev libpng-dev libssl-dev libc-client2007e-dev libkrb5-dev unzip cron re2c python tree wget sudo man \
   && apt-get install -y --no-install-recommends courier-base \
   && docker-php-ext-configure imap --with-imap-ssl --with-kerberos \
   && docker-php-ext-install mysqli curl gd zip mbstring imap iconv \
