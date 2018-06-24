@@ -1,9 +1,13 @@
-FROM php:5.6-apache
+FROM php:7.0-apache
 MAINTAINER Christian Simon <mail@christiansimon.eu>
 
 ENV POSTFIXADMIN_VERSION 3.2
 
-RUN echo "courier-base courier-base/webadmin-configmode boolean true" | debconf-set-selections
+RUN echo "courier-base courier-base/webadmin-configmode boolean true" | debconf-set-selections && \
+    echo "courier-base courier-base/certnotice note" | debconf-set-selections -v && \
+    echo "courier-base courier-base/courier-user note" | debconf-set-selections -v && \
+    echo "courier-base courier-base/maildirpath note" | debconf-set-selections -v && \
+    echo "courier-base courier-base/maildir string Maildir" | debconf-set-selections -v
 
 # install the tools and PHP extensions we need
 RUN apt-get update \
